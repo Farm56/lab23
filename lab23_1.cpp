@@ -102,11 +102,8 @@ int main(){
         else if(command == "GRADE") searchGrade(names, scores, grades, key);
         else if(command == "NAME") searchName(names, scores, grades, key);
         else{
-            // Print the top separator line
             cout << "---------------------------------\n";
-            // Print invalid command message
             cout << "Invalid command.\n";
-            // Print the bottom separator line
             cout << "---------------------------------\n";
         }
     }while(true);
