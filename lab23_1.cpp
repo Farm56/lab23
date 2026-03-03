@@ -24,7 +24,6 @@ void importDataFromFile(string filename, vector<string> &names, vector<int> &sco
     ifstream file(filename);
     string textline;
     while(getline(file, textline)){
-        // แก้จาก int เป็น size_t
         size_t idx = textline.find(':');
         if (idx != string::npos) {
             string name = textline.substr(0, idx);
@@ -41,12 +40,10 @@ void importDataFromFile(string filename, vector<string> &names, vector<int> &sco
 }
 
 void getCommand(string &command, string &key){
-    // Prompt the user for input command
     cout << "Please input your command:\n";
     string line;
     getline(cin, line);
     
-    // แก้จาก int เป็น size_t
     size_t spacePos = line.find_first_of(" ");
     if (spacePos != string::npos) {
         command = line.substr(0, spacePos);
@@ -59,42 +56,33 @@ void getCommand(string &command, string &key){
 
 void searchName(vector<string> names, vector<int> scores, vector<char> grades, string key){
     bool found = false;
-    // Print the top separator line
     cout << "---------------------------------\n";
     for(size_t i = 0; i < names.size(); i++){
         if(toUpperStr(names[i]) == key){
-            // Print the student's score
             cout << names[i] << "'s score = " << scores[i] << "\n";
-            // Print the student's grade
             cout << names[i] << "'s grade = " << grades[i] << "\n";
             found = true;
         }
     }
     if(!found){
-        // Print error message when name is not found
         cout << "Cannot found.\n";
     }
-    // Print the bottom separator line
     cout << "---------------------------------\n";
 }
 
 void searchGrade(vector<string> names, vector<int> scores, vector<char> grades, string key){
     bool found = false;
-    // Print the top separator line
     cout << "---------------------------------\n";
     for(size_t i = 0; i < names.size(); i++){
         string g(1, grades[i]);
         if(g == key){
-            // Print the student's name and score
             cout << names[i] << " (" << scores[i] << ")\n";
             found = true;
         }
     }
     if(!found){
-        // Print error message when grade is not found
         cout << "Cannot found.\n";
     }
-    // Print the bottom separator line
     cout << "---------------------------------\n";
 }
 
