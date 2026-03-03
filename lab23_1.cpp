@@ -24,7 +24,8 @@ void importDataFromFile(string filename, vector<string> &names, vector<int> &sco
     ifstream file(filename);
     string textline;
     while(getline(file, textline)){
-        int idx = textline.find(':');
+        // แก้จาก int เป็น size_t
+        size_t idx = textline.find(':');
         if (idx != string::npos) {
             string name = textline.substr(0, idx);
             names.push_back(name);
@@ -45,7 +46,8 @@ void getCommand(string &command, string &key){
     string line;
     getline(cin, line);
     
-    int spacePos = line.find_first_of(" ");
+    // แก้จาก int เป็น size_t
+    size_t spacePos = line.find_first_of(" ");
     if (spacePos != string::npos) {
         command = line.substr(0, spacePos);
         key = line.substr(spacePos + 1);
@@ -112,8 +114,11 @@ int main(){
         else if(command == "GRADE") searchGrade(names, scores, grades, key);
         else if(command == "NAME") searchName(names, scores, grades, key);
         else{
+            // Print the top separator line
             cout << "---------------------------------\n";
+            // Print invalid command message
             cout << "Invalid command.\n";
+            // Print the bottom separator line
             cout << "---------------------------------\n";
         }
     }while(true);
